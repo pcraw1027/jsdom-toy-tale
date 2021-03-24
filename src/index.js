@@ -18,31 +18,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 fetch(url)
-.then(res => res.json())
-.then(data => data.forEach(console.log(data.name))) 
+  .then(res => res.json())
+  .then(function (data) {
+    data.forEach(function (toyObj) {
+      addToys(toyObj)
+    })
+  })
 
-function addToys() {
+function addToys(toyObj) {
 
-let div = document.createElement("div")
-div.className = "card" 
-let h2 = document.createElement("h2")
-h2.innerText = "...data.name"
-let img = document.createElement("img")
-img.src = "...data.image"
-img.className = "toy-avatar"
-let p = document.createElement("p")
-p.innerText = "...data.likes"
-let createButton = document.createElement("button")
-createButton.className = "like-btn"
-createButton.innerText = "Like"
+  let div = document.createElement("div")
+  div.className = "card"
+  let h2 = document.createElement("h2")
+  h2.innerHTML = toyObj.name
+  let img = document.createElement("img")
+  img.src = toyObj.image
+  img.className = "toy-avatar"
+  let p = document.createElement("p")
+  p.innerText = toyObj.likes
+  let likeButton = document.createElement("button")
+  likeButton.className = "like-btn"
+  likeButton.innerText = "Like"
 
-div.append(h2, img, p, createButton)
+  div.append(h2, img, p, likeButton)
 
-toyCollection.append(div)
+  toyCollection.append(div)
 
 
 }
 
-addToys()
+let createToyButton = document.querySelector("form.add-toy-form");
 
+createToyButton.addEventListener("submit", evt => {
+  evt.preventDefault();
+  let theForm = evt.target; // gives form
+  let input1 = theForm.name;
+  let input2 = theForm.image;
+  fetch(url, {
+    method: 'POST',
+    headers:
+    {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
 
+    body: JSON.stringify({
+      "name": `${input1}`,
+      "image": `${input2}`,
+      "likes": 0
+    })
+  })
+    .then(res => res.json())
+    .then(function createdToys() {
+      addToys(createdToys)
+    })
+})

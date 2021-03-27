@@ -49,22 +49,16 @@
       "likes": -2
     },
     {
-      "name": "[object HTMLInputElement]",
-      "image": "[object HTMLInputElement]",
+      "name": "andy",
+      "image": "https://www.istockphoto.com/photos/toy",
       "likes": 0,
-      "id": 9
+      "id": 14
     },
     {
-      "name": "[object HTMLInputElement]",
-      "image": "[object HTMLInputElement]",
+      "name": "teddy",
+      "image": "https://imgur.com/t/teddy_bear/tpxhpcd",
       "likes": 0,
-      "id": 10
-    },
-    {
-      "name": "[object HTMLInputElement]",
-      "image": "[object HTMLInputElement]",
-      "likes": 0,
-      "id": 11
+      "id": 15
     }
   ]
 }

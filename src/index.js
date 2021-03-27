@@ -47,13 +47,12 @@ function addToys(toyObj) {
 
 }
 
-let createToyButton = document.querySelector("form.add-toy-form");
+let createToyForm = document.querySelector(".add-toy-form");
 
-createToyButton.addEventListener("submit", evt => {
+createToyForm.addEventListener("submit", evt => {
   evt.preventDefault();
-  let theForm = evt.target; // gives form
-  let input1 = theForm.name;
-  let input2 = theForm.image;
+  let input1 = evt.target.name.value;
+  let input2 = evt.target.image.value;
   fetch(url, {
     method: 'POST',
     headers:
@@ -69,7 +68,7 @@ createToyButton.addEventListener("submit", evt => {
     })
   })
     .then(res => res.json())
-    .then(function createdToys() {
+    .then(function (createdToys){
       addToys(createdToys)
     })
 })
